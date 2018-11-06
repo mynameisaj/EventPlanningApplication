@@ -9,17 +9,28 @@ export default class SignUpForm extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            name: ''
         }
     }
 
     signUpUser = (email, password) => {
 
         try {
-
-            if (this.state.password.length < 6) {
-                alert("Please enter atleast 6 characters")
+            if(this.state.name.length == 0){
+                alert("Enter your name.")
                 return;
+            }
+            if (this.state.email != null) {
+                alert("Enter an email.")
+                return;
+            }
+            if (this.state.password.length < 6) {
+                alert("Password length must be atleast 6 characters")
+                return;
+            }            
+            if(this.state.password.length > 6) {
+                alert("Account successfully created!")
             }
 
             firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -81,10 +92,19 @@ export default class SignUpForm extends Component {
                     <Button style={styles.button}
                         full
                         rounded
-                        primary
+                        warning
                         onPress={() => this.signUpUser(this.state.email, this.state.password)}
                     >
-                        <Text style={{ color: 'white' }}> Register</Text>
+                        <Text style={{ color: 'white' }}>Register</Text>
+                    </Button>
+
+                    <Button style={styles.button}
+                    full
+                    rounded
+                    primary
+                    onPress={() => this.props.navigation.push('LoginForm')}
+                    >
+                    <Text style={{ color: 'white' }}>Go Back</Text>
                     </Button>
 
                 </Form>
@@ -108,7 +128,7 @@ const styles = StyleSheet.create({
     paddingTop: 30
   },
   button: {
-    marginTop: 100,
+    marginTop: 10,
     marginLeft: 5,
     marginRight: 5
   }

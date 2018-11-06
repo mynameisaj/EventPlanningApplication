@@ -11,7 +11,7 @@ import LoginForm from './screens/LoginForm';
 import SignUpForm from './screens/SignUpForm';
 
 import Profile from './screens/Profile';
-import EditBook from './screens/editBook';
+import EditBook from './screens/editBook';8
 
 let screen = Dimensions.get('window');
 
@@ -54,16 +54,10 @@ export const Tabs = createBottomTabNavigator({
     },
 });
 
-export const AuthenticationNavigator = createStackNavigator({
-    Login: {
-        screen:LoginForm
-    }
-});
-
 export const createRootNavigator = () => {
     return createStackNavigator(
         {
-            AuthenticationNavigator: {
+            LoginForm: {
                 screen: LoginForm,
                 navigationOptions: ({navigation}) => ({
                     gesturesEnabled: false,
@@ -71,6 +65,12 @@ export const createRootNavigator = () => {
             },
             Tabs: {
                 screen: Tabs,
+                navigationOptions: ({navigation}) => ({
+                    gesturesEnabled: false,
+                })
+            },
+            SignUpForm: {
+                screen: SignUpForm,
                 navigationOptions: ({navigation}) => ({
                     gesturesEnabled: false,
                 })

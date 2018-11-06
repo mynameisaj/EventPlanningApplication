@@ -21,8 +21,10 @@ export default class Profile extends Component {
         rounded
         success
         style={styles.button}
+        onPress={() => this.props.navigation.navigate('LoginForm')}
         >
         <Text style={{ color: 'white' }}>Sign Out</Text>
+
         </Button>
       </Card>
       </View>
