@@ -2,71 +2,98 @@ import React, { Component } from 'react';
 import {
     StatusBar,
     StyleSheet,
-    FlatList,
+    View,
+    Image,
     Text,
-    View
+    TextInput
 } from 'react-native';
-
-import BookcaseItem from './bookcaseItem';
-
+import { Container, Header, Left, Body, Right, Button, Title, Card, CardItem, Alert } from 'native-base';
+import {AsyncStorage} from 'react-native';
 export default class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            books: [
-                {
-                    id: 1,
-                    title: 'Birthday Parties',
-                    //author: 'J. K. Rowling',
-                    thumbnail: 'https://bit.ly/2Sh2Fpu'
-                },
-                {
-                    id: 2,
-                    title: 'Bridal Showers',
-                    //author: 'J. R. R. Tolkien',
-                    thumbnail: 'https://bit.ly/2Sh2Fpu'
-                },
-                {
-                    id: 3,
-                    title: 'Graduation Party',
-                    //author: 'George Orwell',
-                    thumbnail: 'https://bit.ly/2Sh2Fpu'
-                }
-            ]
-        }
+
+    componentWillMount(){
+        this.getKey();
     }
 
-    _renderItem = ({item}) => (
-        <BookcaseItem
-            id={item.id}
-            title={item.title}
-            author={item.author}
-            thumbnail={item.thumbnail}
-            navigation={this.props.navigation}
-        />
-    );
+constructor(props) {
+        super(props)
 
-    _keyExtractor = (item, index) => item.id.toString();
+        this.state = {
+
+     
+      TextUserName: '',
+      TextPassword: '',
+      mysessionUsername:null
+    }
+
+}
+
+async getKey() {
+    try {
+       AsyncStorage.getItem('sessionUsername').then((value) => {
+    this.setState({"mysessionUsername": value});
+})
+.then(res => {
+   
+}).catch((error)=>{
+     console.log("Api call error");
+     alert(error.message);
+  });
+     
+      
+      //await this.setState({ lchMoteurRch: AsyncVal });
+    } catch (error) {
+      console.log("Error retrieving data" + error);
+    }
+}
 
     render() {
         return (
-            <View style={styles.container}>
-                <StatusBar
-                    barStyle="light-content"
-                />
-                <FlatList
-                    data={this.state.books}
-                    keyExtractor={this._keyExtractor}
-                    renderItem={this._renderItem}
-                />
-            </View>
+        <View style={styles.container}>
+
+        <TextInput
+        style={styles.formInput}
+        placeholder="Enter key you want to save!"
+        value={this.state.mysessionUsername}
+        />
+        {/*For Every Single Page Where You need to know if a user
+        is logged in use the 'this.state.mysessionUsername'
+
+        if this.state.mysessionUsername isn't null then the person is logged in then 
+        do something with it if it is null then the person is not 
+        logged in, so do something*/}
+
+        <Header style={styles.header}>
+            <Body><Title>VibEvents</Title></Body>
+            <Right>
+            <Button hasText transparent
+              onPress={() => this.props.navigation.navigate('creatEvent')}>
+            <Text>CreatEvent</Text>
+            </Button>
+            </Right>
+        </Header>
+            
+        <StatusBar
+            backgroundColor='#000000'
+        />
+       <Text style={styles.caption}>Welcome to VibEvents!</Text>
+        </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#F5FCFF',
-    }
+container: {
+    flex: 1,
+    backgroundColor: '#F5FCFF',
+    },
+header: {
+    backgroundColor: '#00b3b3',
+    color: 'white'
+  },
+caption: {
+    textAlign: 'center',
+    fontSize: 30,
+    padding: 70
+  }
 });

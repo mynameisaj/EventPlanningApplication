@@ -4,14 +4,16 @@ import {StackNavigator, createStackNavigator, createBottomTabNavigator, withNavi
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import Home from './screens/Home';
-import Explore from './screens/explore';
+import events from './screens/events';
 import Vendors from './screens/Vendors';
-
+import creatEvent from './screens/creatEvent';
 import LoginForm from './screens/LoginForm';
 import SignUpForm from './screens/SignUpForm';
+import VendorSignUp from './screens/VendorSignUp';
+import vendorLogin from './screens/vendorLogin';
+
 
 import Profile from './screens/Profile';
-import EditBook from './screens/editBook';8
 
 let screen = Dimensions.get('window');
 
@@ -25,12 +27,12 @@ export const Tabs = createBottomTabNavigator({
                 )
         },
     },
-    Explore: {
-        screen: Explore,
+    Events: {
+        screen: events,
         navigationOptions: {
-            tabBarLabel: 'Explore',
+            tabBarLabel: 'MyEvents',
              tabBarIcon: ({tintColor}) =>(
-                <Icon name='md-globe' size={30} />
+                <Icon name='md-calendar' size={30} />
                 )
         },
     },
@@ -43,10 +45,10 @@ export const Tabs = createBottomTabNavigator({
                 )
         },
     },
-    MyProfile: {
+    Profile: {
         screen: Profile,
         navigationOptions: {
-            tabBarLabel: 'Profile',
+            tabBarLabel: 'Account',
             tabBarIcon: ({tintColor}) =>(
                 <Icon name='md-person' size={30} />
                 )
@@ -69,13 +71,33 @@ export const createRootNavigator = () => {
                     gesturesEnabled: false,
                 })
             },
+
+            creatEvent: {
+                screen: creatEvent,
+                navigationOptions: ({navigation}) => ({
+                    gesturesEnabled: false,
+                })
+            },
             SignUpForm: {
                 screen: SignUpForm,
                 navigationOptions: ({navigation}) => ({
                     gesturesEnabled: false,
                 })
+            },
+            vendorLogin: {
+                screen: vendorLogin,
+                navigationOptions: ({navigation}) => ({
+                    gesturesEnabled: false,
+                })
+            },
+            VendorSignUp: {
+                screen: VendorSignUp,
+                navigationOptions: ({navigation}) => ({
+                    gesturesEnabled: false,
+                })
             }
-        },
+            },
+
         {
             headerMode: "none",
             mode: "modal"

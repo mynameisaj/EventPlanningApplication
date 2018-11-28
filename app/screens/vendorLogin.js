@@ -48,7 +48,7 @@ async saveKey(value) {
  const { TextPassword }  = this.state ;
     
 
- fetch('http://vibevents.x10host.com/restApi/Login.php', {
+ fetch('http://vibevents.x10host.com/restApi/VendorLogin.php', {
   method: 'POST',
   headers: {
     'Accept': 'application/json',
@@ -91,7 +91,7 @@ async saveKey(value) {
       />
         <Form style={styles.loginstyle}>
         <Item floatingLabel>
-        <Label>Username</Label>
+        <Label>Company Name</Label>
         <Input
           autoCorrect={false}
           autoCapitalize="none"
@@ -115,39 +115,8 @@ async saveKey(value) {
         style={styles.button}
         onPress={this.InsertDataToServer}
         >
-        <Text style={{ color: 'white' }}>LOG IN</Text>
+        <Text style={{ color: 'white' }}>VENDOR LOG IN</Text>
         </Button>
-
-        <Button
-        full
-        rounded
-        info
-        style={styles.userbutton}
-        onPress={() => { this.props.navigation.navigate('SignUpForm')}}
-        >
-        <Text style={{ color: 'white' }}>CREATE USER ACCOUNT</Text>
-        </Button>
-
-        <Button
-        full
-        rounded
-        success
-        style={styles.vendorbutton}
-        onPress={() => { this.props.navigation.navigate('VendorSignUp')}}
-        >
-        <Text style={{ color: 'white' }}>CREATE VENDOR ACCOUNT</Text>
-        </Button>
-
-        <Button
-        full
-        rounded
-        danger
-        style={styles.vendorbutton}
-        onPress={() => { this.props.navigation.navigate('vendorLogin')}}
-        >
-        <Text style={{ color: 'white' }}>LOG IN AS A VENDOR</Text>
-        </Button>
-
         </Form>
       </Container>
     );
@@ -170,7 +139,7 @@ const styles = StyleSheet.create({
     marginRight: 5
   },
   userbutton: {
-    marginTop: 10,
+    marginTop: 30,
     marginLeft: 5,
     marginRight: 5
   },

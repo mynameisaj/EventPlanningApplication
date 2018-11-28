@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, AppRegistry, TextInput, Alert } from 'react-native';
 import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base'
 
 export default class SignUpForm extends Component {
@@ -8,65 +8,123 @@ export default class SignUpForm extends Component {
         super(props)
 
         this.state = {
-            email: '',
-            password: '',
-            name: ''
-        }
+
+      TextUserName: '',
+      TextInputEmail: '',
+      TextFirstName: '',
+      TextLastName: '',
+      TextPassword: '',
+      TextInputPhoneNumber: '',
+      TextInputAddress: '' 
     }
 
-    signUpUser = (email, password) => {
+}
+        InsertDataToServer = () =>{
+ 
+ 
+ const { TextUserName }  = this.state ;
+ const { TextInputEmail }  = this.state ;
+ const { TextFirstName }  = this.state ;
+ const { TextLastName }  = this.state ;
+ const { TextPassword }  = this.state ;
+ const { TextInputPhoneNumber }  = this.state ;
+ const { TextInputAddress } = this.state ;
+    
 
-        try {
-            if(this.state.name.length == 0){
-                alert("Enter your name.")
-                return;
-            }
-            if (this.state.email != null) {
-                alert("Enter an email.")
-                return;
-            }
-            if (this.state.password.length < 6) {
-                alert("Password length must be atleast 6 characters")
-                return;
-            }            
-            if(this.state.password.length > 6) {
-                alert("Account successfully created!")
-            }
-
-            firebase.auth().createUserWithEmailAndPassword(email, password)
-        }
-        catch (error) {
-            console.log(error.toString())
-        }
-    }
-
+ fetch('http://vibevents.x10host.com/restApi/Signup.php', {
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+ 
+    username: TextUserName,
+    email: TextInputEmail,
+    firstName: TextFirstName,
+    lastName: TextLastName,
+    password: TextPassword, 
+    phoneNumber: TextInputPhoneNumber,
+    address: TextInputAddress
+ 
+  })
+ 
+}).then((response) => response.json())
+      .then((responseJson) => {
+ 
+// Showing response message coming from server after inserting records.
+        Alert.alert(responseJson);
+ 
+      }).catch((error) => {
+        console.error(error);
+      });
+ 
+ 
+  }
     render() {
         return (
-            <Container>
-
-              <View style={styles.header}>
-              <Text style={{color: '#005fad', fontSize: 25, fontWeight: 'bold', fontFamily: 'notoserif' }}>VibEvents</Text>
-              </View>
+            <Container style={styles.container}>
+              <Text style={styles.header}>VibEvents</Text>
                 <Form style={styles.loginstyle}>
-
+                    
                     <Item floatingLabel>
-                        <Label>Name</Label>
+                        <Label>Username</Label>
                         <Input
                             autoCorrect={false}
                             autoCapitalize="none"
-                            onChangeText={(name) => this.setState({ name })}
+                            onChangeText={TextUserName => this.setState({TextUserName})}
+ 
+                        />
+
+                    </Item>
+
+                     <Item floatingLabel>
+                        <Label>First Name</Label>
+                        <Input
+                            autoCorrect={false}
+                            autoCapitalize="none"
+                            onChangeText={TextFirstName => this.setState({TextFirstName})}
+ 
                         />
 
                     </Item>
 
                     <Item floatingLabel>
-                        <Label>Email</Label>
+                        <Label>Last Name</Label>
                         <Input
                             autoCorrect={false}
                             autoCapitalize="none"
-                            onChangeText={(email) => this.setState({ email })}
+                            onChangeText={TextLastName => this.setState({TextLastName})}
                         />
 
+                    </Item>
+
+                    <Item floatingLabel>
+                        <Label>Email Address</Label>
+                        <Input
+                            autoCorrect={false}
+                            autoCapitalize="none"
+                            onChangeText={TextInputEmail => this.setState({TextInputEmail})}
+                        />
+
+                    </Item>
+
+                     <Item floatingLabel>
+                        <Label>Phone Number</Label>
+                        <Input
+                            autoCorrect={false}
+                            autoCapitalize="none"
+                            onChangeText={TextInputPhoneNumber => this.setState({TextInputPhoneNumber})}
+                        />
+                    </Item>
+
+                    <Item floatingLabel>
+                        <Label>Address</Label>
+                        <Input
+                            autoCorrect={false}
+                            autoCapitalize="none"
+                            onChangeText={TextInputAddress => this.setState({TextInputAddress})}
+                        />
                     </Item>
 
                     <Item floatingLabel>
@@ -75,40 +133,35 @@ export default class SignUpForm extends Component {
                             secureTextEntry={true}
                             autoCorrect={false}
                             autoCapitalize="none"
-                            onChangeText={(password) => this.setState({ password })}
+                            onChangeText={TextPassword => this.setState({TextPassword})}
                         />
                     </Item>
 
-                    <Item floatingLabel>
-                        <Label>Confirm Password</Label>
-                        <Input
-                            secureTextEntry={true}
-                            autoCorrect={false}
-                            autoCapitalize="none"
-                            onChangeText={(confirmpassword) => this.setState({ confirmpassword })}
-                        />
-                    </Item>
+                   
+                    <View style={{flexDirection: 'row'}}>
 
-                    <Button style={styles.button}
-                        full
-                        rounded
-                        warning
-                        onPress={() => this.signUpUser(this.state.email, this.state.password)}
-                    >
-                        <Text style={{ color: 'white' }}>Register</Text>
-                    </Button>
-
-                    <Button style={styles.button}
+                    <Button style={styles.gobackbutton}
                     full
                     rounded
                     primary
                     onPress={() => this.props.navigation.push('LoginForm')}
                     >
-                    <Text style={{ color: 'white' }}>Go Back</Text>
+                    <Text style={{ color: 'white' }}>GO BACK</Text>
                     </Button>
 
+                    <Button style={styles.registerbutton}
+                        full
+                        rounded
+                        warning
+                        onPress={this.InsertDataToServer} color="#2196F3" >
+                
+                        <Text style={{ color: 'white' }}>REGISTER AS A USER</Text>
+                    </Button>
+
+                    </View>
                 </Form>
-            </Container>
+                </Container>
+                
         );
     }
 }
@@ -118,18 +171,21 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5FCFF'
     },
     loginstyle: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    paddingLeft: 20,
-    paddingRight: 20
   },
-   header: {
-    alignItems:'center',
-    paddingTop: 30
+    header: {
+    backgroundColor: '#00b3b3',
+    color: 'white',
+    textAlign:'center',
+    fontSize: 30
   },
-  button: {
-    marginTop: 10,
-    marginLeft: 5,
-    marginRight: 5
+    registerbutton: {
+        padding: 20,
+        marginTop: 10,
+        marginLeft: 65
+  },
+    gobackbutton: {
+        padding: 20,
+        marginTop: 10,
+        marginLeft:10        
   }
 });
