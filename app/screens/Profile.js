@@ -129,19 +129,9 @@ async saveKey(value) {
       <Text style={styles.textStyle}>Phone Number: {this.state.phoneNumber}</Text>
       <Text style={styles.textStyle}>Address: {this.state.Address}</Text>
       </Card>
-     
-      
-      
-      <Button
-        full
-        rounded
-        success
-        style={styles.button}
-        onPress={() => this.props.navigation.navigate('LoginForm')}
-        >
-        <Text style={{ color: 'white' }}>LOG OUT</Text>
-      </Button>
+
       </View>
+      
     );
   }
 }

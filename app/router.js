@@ -6,14 +6,18 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Home from './screens/Home';
 import events from './screens/events';
 import Vendors from './screens/Vendors';
-import creatEvent from './screens/creatEvent';
 import LoginForm from './screens/LoginForm';
 import SignUpForm from './screens/SignUpForm';
 import VendorSignUp from './screens/VendorSignUp';
 import vendorLogin from './screens/vendorLogin';
-
-
+import Startup from './screens/Startup';
+import createLocation from './screens/createLocation';
+import logout from './screens/logout';
+import addServices from './screens/addServices';
+import createEvent from './screens/createEvent';
 import Profile from './screens/Profile';
+import forgotpassworduser from './screens/forgotpassworduser';
+import forgotpasswordvendor from './screens/forgotpasswordvendor';
 
 let screen = Dimensions.get('window');
 
@@ -24,15 +28,6 @@ export const Tabs = createBottomTabNavigator({
             tabBarLabel: 'Home',
              tabBarIcon: ({tintColor}) =>(
                 <Icon name='md-home' size={30} />
-                )
-        },
-    },
-    Events: {
-        screen: events,
-        navigationOptions: {
-            tabBarLabel: 'MyEvents',
-             tabBarIcon: ({tintColor}) =>(
-                <Icon name='md-calendar' size={30} />
                 )
         },
     },
@@ -59,6 +54,18 @@ export const Tabs = createBottomTabNavigator({
 export const createRootNavigator = () => {
     return createStackNavigator(
         {
+            Startup: {
+                screen: Startup,
+                navigationOptions: ({navigation}) => ({
+                    gesturesEnabled: false,
+                })
+            },
+            logout: {
+                screen: logout,
+                navigationOptions: ({navigation}) => ({
+                    gesturesEnabled: false,
+                })
+            },
             LoginForm: {
                 screen: LoginForm,
                 navigationOptions: ({navigation}) => ({
@@ -72,20 +79,44 @@ export const createRootNavigator = () => {
                 })
             },
 
-            creatEvent: {
-                screen: creatEvent,
-                navigationOptions: ({navigation}) => ({
-                    gesturesEnabled: false,
-                })
-            },
             SignUpForm: {
                 screen: SignUpForm,
                 navigationOptions: ({navigation}) => ({
                     gesturesEnabled: false,
                 })
             },
+            createEvent: {
+                screen: createEvent,
+                navigationOptions: ({navigation}) => ({
+                    gesturesEnabled: false,
+                })
+            },
             vendorLogin: {
                 screen: vendorLogin,
+                navigationOptions: ({navigation}) => ({
+                    gesturesEnabled: false,
+                })
+            },
+            createLocation: {
+                screen: createLocation,
+                navigationOptions: ({navigation}) => ({
+                    gesturesEnabled: false,
+                })
+            },
+            addServices: {
+                screen: addServices,
+                navigationOptions: ({navigation}) => ({
+                    gesturesEnabled: false,
+                })
+            },
+            forgotpassworduser: {
+                screen: forgotpassworduser,
+                navigationOptions: ({navigation}) => ({
+                    gesturesEnabled: false,
+                })
+            },
+            forgotpasswordvendor: {
+                screen: forgotpasswordvendor,
                 navigationOptions: ({navigation}) => ({
                     gesturesEnabled: false,
                 })

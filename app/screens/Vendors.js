@@ -28,64 +28,52 @@ export default class Vendors extends Component {
                 backgroundColor='#000000'
         />
 
-        <Card title="Whole Foods">
-        <Text>Address:</Text>
-        <Text>Phone Number:</Text>
-        <Text>Hours of Operation:</Text>
+        <Card style={{marginTop: 30}}>
+        <Text>Company Name: Julia's Bakery</Text>
+        <Text>Email: juliabakes@gmail.com</Text>
+        <Text>Description: Baked Goods</Text>
         </Card>
 
-        <Card title="Whole Foods">
-        <Text>Address:</Text>
-        <Text>Phone Number:</Text>
-        <Text>Hours of Operation:</Text>
+        <Card>
+        <Text>Company Name: Whole Foods</Text>
+        <Text>Email: wholefoods@gmail.com</Text>
+        <Text>Description: Catered Food</Text>
         </Card>
 
-        <Card title="Whole Foods">
-        <Text>Address:</Text>
-        <Text>Phone Number:</Text>
-        <Text>Hours of Operation:</Text>
+        <Card>
+        <Text>Company Name: Taco Bell</Text>
+        <Text>Email: tacobell@gmail.com</Text>
+        <Text>Description: Mexican-Inspired Food</Text>
         </Card>
 
-        <Card title="Whole Foods">
-        <Text>Address:</Text>
-        <Text>Phone Number:</Text>
-        <Text>Hours of Operation:</Text>
+        <Card>
+        <Text>Company Name: Poland Spring</Text>
+        <Text>Email: polandspring@gmail.com</Text>
+        <Text>Description: Water</Text>
         </Card>
 
-         <Card title="Whole Foods">
-        <Text>Address:</Text>
-        <Text>Phone Number:</Text>
-        <Text>Hours of Operation:</Text>
+        <Card>
+        <Text>Company Name: Champion Pizza</Text>
+        <Text>Email: champion@gmail.com</Text>
+        <Text>Description:</Text>
         </Card>
 
-         <Card title="Whole Foods">
-        <Text>Address:</Text>
-        <Text>Phone Number:</Text>
-        <Text>Hours of Operation:</Text>
+        <Card>
+        <Text>Company Name: Breads Bakery</Text>
+        <Text>Email: breadsbakes@gmail.com</Text>
+        <Text>Description: Baked Goods, Cakes</Text>
         </Card>
 
-         <Card title="Whole Foods">
-        <Text>Address:</Text>
-        <Text>Phone Number:</Text>
-        <Text>Hours of Operation:</Text>
+        <Card>
+        <Text>Company Name: Golden Terrace</Text>
+        <Text>Email: goldenterrace@gmail.com</Text>
+        <Text>Description: Venue</Text>
         </Card>
 
-        <Card title="Whole Foods">
-        <Text>Address:</Text>
-        <Text>Phone Number:</Text>
-        <Text>Hours of Operation:</Text>
-        </Card>
-
-        <Card title="McDonald's">
-        <Text>Address: Alex's Heart</Text>
-        <Text>Phone Number:</Text>
-        <Text>Hours of Operation:</Text>
-        </Card>
-
-        <Card title="Whole Foods">
-        <Text>Address:</Text>
-        <Text>Phone Number:</Text>
-        <Text>Hours of Operation:</Text>
+        <Card>
+        <Text>Company Name: WeWork</Text>
+        <Text>Email: wework@gmail.com</Text>
+        <Text>Description: Venue</Text>
         </Card>
       </ScrollView>
     );
@@ -96,6 +84,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F5FCFF',
+    textAlign: 'center'
   },
   title: {
     fontSize: 20,
@@ -104,5 +93,8 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: '#00b3b3',
     color: 'white'
+  },
+  cardstyle: {
+
   }
 });

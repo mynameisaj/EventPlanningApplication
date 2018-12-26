@@ -98,6 +98,7 @@ async saveKey(value) {
           onChangeText={(TextUserName) => this.setState({ TextUserName })}
         />
         </Item>
+
         <Item floatingLabel>
         <Label>Password</Label>
         <Input
@@ -131,6 +132,17 @@ async saveKey(value) {
         <Button
         full
         rounded
+        danger
+        style={styles.userbutton}
+        onPress={() => { this.props.navigation.navigate('forgotpassworduser')}}
+        >
+        <Text style={{ color: 'white' }}>FORGOT PASSWORD?</Text>
+        </Button>
+
+
+        {/*<Button
+        full
+        rounded
         success
         style={styles.vendorbutton}
         onPress={() => { this.props.navigation.navigate('VendorSignUp')}}
@@ -138,16 +150,18 @@ async saveKey(value) {
         <Text style={{ color: 'white' }}>CREATE VENDOR ACCOUNT</Text>
         </Button>
 
-        <Button
+        *<Button
         full
         rounded
         danger
+        
         style={styles.vendorbutton}
         onPress={() => { this.props.navigation.navigate('vendorLogin')}}
         >
         <Text style={{ color: 'white' }}>LOG IN AS A VENDOR</Text>
         </Button>
-
+        */}
+      
         </Form>
       </Container>
     );

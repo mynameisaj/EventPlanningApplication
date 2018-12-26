@@ -20,7 +20,7 @@ export default class LoginForm extends Component {
 
 async getKey() {
     try {
-       AsyncStorage.getItem('company').then((value) => {
+       AsyncStorage.getItem('sessionUsername').then((value) => {
     this.setState({"mysessionUsername": value});
 })
 .then(res => {
@@ -36,7 +36,7 @@ async getKey() {
 
 async saveKey(value) {
     try {
-      await AsyncStorage.setItem('company', value);
+      await AsyncStorage.setItem('sessionUsername', value);
     } catch (error) {
       console.log("Error saving data" + error);
     }
@@ -48,7 +48,7 @@ async saveKey(value) {
  const { TextPassword }  = this.state ;
     
 
- fetch('http://vibevents.x10host.com/restApi/VendorLogin.php', {
+ fetch('http://vibevents.x10host.com/restApi/Login.php', {
   method: 'POST',
   headers: {
     'Accept': 'application/json',
@@ -89,55 +89,29 @@ async saveKey(value) {
       <StatusBar
             backgroundColor='#000000'
       />
-        <Form style={styles.loginstyle}>
-        <Item floatingLabel>
-        <Label>Company Name</Label>
-        <Input
-          autoCorrect={false}
-          autoCapitalize="none"
-          onChangeText={(TextUserName) => this.setState({ TextUserName })}
-        />
-        </Item>
-        <Item floatingLabel>
-        <Label>Password</Label>
-        <Input
-          secureTextEntry
-          autoCorrect={false}
-          autoCapitalize="none"
-          onChangeText={(TextPassword) => this.setState({ TextPassword })}
-        />
-        </Item>
 
         <Button
         full
         rounded
         primary
-        style={styles.button}
-        onPress={this.InsertDataToServer}
+        style={styles.vendorbutton}
+        onPress={() => { this.props.navigation.navigate('vendorLogin')}}
         >
-        <Text style={{ color: 'white' }}>LOG IN</Text>
+        <Text style={{ color: 'white', fontSize: 20 }}>I AM A VENDOR</Text>
         </Button>
+
+        <Text style={styles.eventtype}>Are you a user or vendor?</Text>
 
         <Button
         full
         rounded
         info
         style={styles.userbutton}
-        onPress={() => { this.props.navigation.navigate('VendorSignUp')}}
+        onPress={() => { this.props.navigation.navigate('LoginForm')}}
         >
-        <Text style={{ color: 'white' }}>CREATE VENDOR ACCOUNT</Text>
+        <Text style={{ color: 'white', fontSize: 20 }}>I AM A USER</Text>
         </Button>
 
-        <Button
-        full
-        rounded
-        danger
-        style={styles.userbutton}
-        onPress={() => { this.props.navigation.navigate('forgotpasswordvendor')}}
-        >
-        <Text style={{ color: 'white' }}>FORGOT PASSWORD?</Text>
-        </Button>
-        </Form>
       </Container>
     );
   }
@@ -153,20 +127,22 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     padding: 40,
   },
-  button: {
-    marginTop: 30,
-    marginLeft: 5,
-    marginRight: 5
-  },
-  userbutton: {
-    marginTop: 10,
-    marginLeft: 5,
-    marginRight: 5
+  eventtype: {
+    textAlign: 'center',
+    fontSize: 30
   },
   vendorbutton: {
-    marginTop: 10,
-    marginLeft: 5,
-    marginRight: 5
+    top: 250,
+    marginLeft: 10,
+    marginRight: 10,
+    padding: 50,
+    
+  },
+  userbutton: {
+    top: 5,
+    marginLeft: 10,
+    marginRight: 10,
+    padding: 50
   },
   header: {
     backgroundColor: '#00b3b3',

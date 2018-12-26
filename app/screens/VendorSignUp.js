@@ -109,7 +109,7 @@ export default class VendorSignUp extends Component {
                         warning
                         onPress={this.InsertDataToServer} color="#2196F3" >
                 
-                        <Text style={{ color: 'white' }}>REGISTER AS A VENDOR</Text>
+                    <Text style={{ color: 'white' }}>REGISTER AS A VENDOR</Text>
                     </Button>
 
                     <Button style={styles.gobackbutton}
